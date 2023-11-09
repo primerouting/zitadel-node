@@ -3,7 +3,8 @@
 This is the ZITADEL Node.js SDK.
 
 This library contains the compiled and generated [gRPC](https://grpc.io/)
-service clients for the ZITADEL API.
+service clients for the ZITADEL API.  
+This is a fork of [zitadel-node](https://github.com/smartive/zitadel-node) and add the feature to request self-hosted zitadel instance by using http2.
 
 Also it contains helpers to create the service clients to access the API.
 With two `MetadataProvider` (`accessTokenProvider` and `serviceAccountProvider`),

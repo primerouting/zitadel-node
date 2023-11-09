@@ -154,31 +154,36 @@ export class ServiceAccount {
    * ```
    */
   public async authenticate(audience: string, options?: AuthenticationOptions): Promise<string> {
-    const { default: axios } = await import('axios');
-
-    const issuer = await Issuer.discover(audience);
-    const tokenEndpoint = issuer.metadata.token_endpoint ?? 'N/A';
-
+    const { got, RequestError } = await import('got');
+    try {
+    const tokenEndpoint = `${audience}/oauth/v2/token`;
     const jwt = await this.getSignedJwt(audience);
 
-    const response = await axios.post<TokenSet>(
-      tokenEndpoint,
-      new URLSearchParams({
-        assertion: jwt,
-        grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-        scope: createScopes(options ?? {}),
-      })
-    );
+    const scopes = createScopes(options ?? {});
+      const response = await got(tokenEndpoint, {
+        http2: true,
+        method: "POST",
+        body: new URLSearchParams({
+          assertion: jwt,
+          grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+          scope: scopes,
+        }).toString(),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }).json<TokenSet>();
 
-    if (response.status > 299) {
-      throw new Error(`Authentication failed with status ${response.status}: ${response.statusText}.`);
-    }
-
-    if (!response.data.access_token) {
+    if (!response.access_token) {
       throw new Error(`Authentication failed. No access token returned.`);
     }
-
-    return response.data.access_token;
+    return response.access_token;
+    
+    } catch (error) {
+      if(error instanceof RequestError) {
+        throw new Error(`Authentication failed with status ${error.response?.statusCode}: ${error.response?.statusMessage}.`);
+      }
+      throw error;
+    }
   }
 
   private async getSignedJwt(audience: string): Promise<string> {

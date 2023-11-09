@@ -1,7 +1,7 @@
 {
-  "name": "@zitadel/node",
-  "version": "0.0.0-development",
-  "description": "Library for API access to ZITADEL. Provides compiled gRPC service clients and helpers for applications and service accounts.",
+  "name": "@primerouting/zitadel-node",
+  "version": "0.0.1",
+  "description": "Library for API access to ZITADEL. Provides compiled gRPC service clients and helpers for applications and service accounts. Support http2 self-hosted instances",
   "type": "commonjs",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -45,7 +45,7 @@
     "typescript": "5.1.6"
   },
   "dependencies": {
-    "axios": "1.6.1",
+    "got": "^13.0.0",
     "jose": "5.1.0",
     "long": "5.2.3",
     "nice-grpc": "2.1.7",
