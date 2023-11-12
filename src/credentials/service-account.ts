@@ -180,7 +180,7 @@ export class ServiceAccount {
     
     } catch (error) {
       if(error instanceof RequestError) {
-        throw new Error(`Authentication failed with status ${error.response?.statusCode}: ${error.response?.statusMessage}.`);
+        throw new Error(`Authentication failed with status ${error.response?.statusCode}: ${error.response?.body}.`);
       }
       throw error;
     }
