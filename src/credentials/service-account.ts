@@ -1,6 +1,6 @@
 import { importPKCS8, SignJWT } from 'jose';
 import NodeRSA from 'node-rsa';
-import { Issuer, TokenSet } from 'openid-client';
+import { TokenSet } from 'openid-client';
 
 type ServiceAccountJson = {
   userId: string;

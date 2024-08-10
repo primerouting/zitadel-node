@@ -1,18 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@tsconfig/node-lts/tsconfig.json",
   "compilerOptions": {
-    "module": "CommonJS",
-    "target": "ES2020",
-    "moduleResolution": "NodeNext",
+    "outDir": "dist",
     "declaration": true,
-    "outDir": "./dist",
-    "baseUrl": "./src",
-    "incremental": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
