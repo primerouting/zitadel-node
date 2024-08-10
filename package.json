@@ -1,6 +1,6 @@
 {
   "name": "@primerouting/zitadel-node",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Library for API access to ZITADEL. Provides compiled gRPC service clients and helpers for applications and service accounts. Support http2 self-hosted instances",
   "type": "commonjs",
   "main": "./dist/index.js",
@@ -47,11 +47,11 @@
   },
   "dependencies": {
     "got": "^14.4.2",
-    "jose": "5.6.3",
-    "long": "5.2.3",
-    "nice-grpc": "2.1.9",
-    "node-rsa": "1.1.1",
-    "openid-client": "5.6.5",
-    "protobufjs": "7.3.2"
+    "jose": "^5.6.3",
+    "long": "^5.2.3",
+    "nice-grpc": "^2.1.9",
+    "node-rsa": "^1.1.1",
+    "openid-client": "^5.6.5",
+    "protobufjs": "^7.3.2"
   }
 }
